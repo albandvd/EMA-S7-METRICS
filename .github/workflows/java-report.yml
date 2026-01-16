@@ -1,0 +1,65 @@
+name: Java File Report
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  java-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan Java files and generate report
+        run: |
+          echo "Scanning repository..."
+
+          # Fail if any .class files are found
+          CLASS_FILES=$(find . -name "*.class")
+          if [ -n "$CLASS_FILES" ]; then
+            echo "ERROR: Compiled .class files found:"
+            echo "$CLASS_FILES"
+            exit 1
+          fi
+
+          # Find all .java files
+          JAVA_FILES=$(find . -name "*.java")
+
+          # Fail if no .java files are found
+          if [ -z "$JAVA_FILES" ]; then
+            echo "ERROR: No .java files found in repository"
+            exit 1
+          fi
+
+          REPORT_FILE="java-file-report.txt"
+          echo "Java File Report" > $REPORT_FILE
+          echo "================" >> $REPORT_FILE
+
+          FILE_COUNT=0
+          TOTAL_LINES=0
+
+          echo "" >> $REPORT_FILE
+          echo "Per-file breakdown:" >> $REPORT_FILE
+
+          for file in $JAVA_FILES; do
+            LINES=$(wc -l < "$file")
+            echo "$file – $LINES" >> $REPORT_FILE
+            FILE_COUNT=$((FILE_COUNT + 1))
+            TOTAL_LINES=$((TOTAL_LINES + LINES))
+          done
+
+          echo "" >> $REPORT_FILE
+          echo "Summary:" >> $REPORT_FILE
+          echo "Number of .java files: $FILE_COUNT" >> $REPORT_FILE
+          echo "Total lines of code: $TOTAL_LINES" >> $REPORT_FILE
+
+          echo "Report generated:"
+          cat $REPORT_FILE
+
+      - name: Upload java-file-report.txt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-file-report
+          path: java-file-report.txt
