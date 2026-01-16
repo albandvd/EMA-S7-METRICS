@@ -53,7 +53,7 @@
 ``` bash
 …/BankApplication/jay-bank master ? ❯ java -jar ~/Downloads/ckjm_ext.jar target/classes/bankAccountApp/*.class
 
-bankAccountApp.BankAccount 21 1 0 3 44 46 2 2 18 0.6875 477 1.0000 1 0.0000 0.2937 0 0 21.3333
+bankAccountApp.BankAccount 20 1 0 2 43 44 0 2 18 0.6908 462 1.0000 0 0.0000 0.2917 0 0 21.7000
  ~ public void setWithdrawLimit(double withdrawLimit): 1
  ~ public void <init>(int accountNumber, double balance, double withdrawLimit, String dateCreated, String accountHolder): 1
  ~ public String convertToText(bankAccountApp.BankAccount tmp): 1
@@ -61,7 +61,6 @@ bankAccountApp.BankAccount 21 1 0 3 44 46 2 2 18 0.6875 477 1.0000 1 0.0000 0.29
  ~ public double getBalance(): 1
  ~ public int getAccountNumber(): 1
  ~ public void <init>(double newInitMoneyAmount, double newWithdrawlimit, String newDateCreated, bankAccountApp.Person initHolder): 1
- ~ private boolean isWithdrawalValid(double withdrawAmount): 5
  ~ public String getDateCreated(): 1
  ~ public String toString(): 1
  ~ public void depositMoney(double depositAmount): 2
@@ -74,7 +73,7 @@ bankAccountApp.BankAccount 21 1 0 3 44 46 2 2 18 0.6875 477 1.0000 1 0.0000 0.29
  ~ public void setAccountNumber(int accNumber): 1
  ~ private void setBalance(double balance): 1
  ~ public bankAccountApp.Person getAccountHolder(): 1
- ~ public boolean withdrawMoney(double withdrawAmount): 2
+ ~ public boolean withdrawMoney(double withdrawAmount): 5
 
 bankAccountApp.Person 23 1 0 3 39 79 3 0 21 0.7626 325 0.8889 0 0.0000 0.3565 0 0 12.7391
  ~ public void <init>(String accountHolder): 3
@@ -125,7 +124,7 @@ bankAccountApp.Bank 14 1 0 4 44 0 2 3 12 0.8333 413 1.0000 0 0.0000 0.3286 0 0 2
 | Class | LOC (approx.) | NOM | Short description of responsibility |
 |-------|---------------|-----|--------------------------------------|
 | Bank | 413 | 14 | Manages bank accounts collection, performs operations like find, delete, add accounts, and calculates statistics (average, max, min balance) |
-| BankAccount | 477 | 21 | Represents a bank account with holder info, balance, and withdrawal limit; handles deposits and withdrawals |
+| BankAccount | 462 | 20 | Represents a bank account with holder info, balance, and withdrawal limit; handles deposits and withdrawals |
 | Person | 325 | 23 | Represents a person with personal attributes (name, gender, age, height, weight, hair color, eye color, email); includes validation and getters/setters |
 | BankAccountApp | 491 | 2 | Main application class that provides the user interface and orchestrates interactions between Bank and BankAccount objects |
 

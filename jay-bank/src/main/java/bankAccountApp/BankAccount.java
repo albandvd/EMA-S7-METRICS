@@ -128,45 +128,19 @@ public class BankAccount {
 		}
 	}
 
-	/**
-	 * Validates if a withdrawal is allowed based on amount, balance, and limits
-	 * 
-	 * @param withdrawAmount the amount to withdraw
-	 * @return true if withdrawal is valid, false otherwise
-	 */
-	private boolean isWithdrawalValid(double withdrawAmount) {
-		// DECISION POINT 1: Amount must be non-negative
-		if (withdrawAmount < 0) {
-			return false;
-		}
-		
-		// DECISION POINT 2: Must have sufficient balance
-		if (balance < withdrawAmount) {
-			return false;
-		}
-		
-		// DECISION POINT 3: Amount must be within withdrawal limit
-		if (withdrawAmount >= withdrawLimit) {
-			return false;
-		}
-		
-		// DECISION POINT 4: Total withdrawals must not exceed limit
-		if (withdrawAmount + amountWithdrawn > withdrawLimit) {
-			return false;
-		}
-		
-		return true;
+	private boolean withdrawPossible(double withdrawAmount) {
+		return withdrawAmount >= 0 &&
+			   balance >= withdrawAmount &&
+			   withdrawAmount + amountWithdrawn <= withdrawLimit;
 	}
 
 	public boolean withdrawMoney(double withdrawAmount) {
-		if (isWithdrawalValid(withdrawAmount)) {
-			balance = balance - withdrawAmount;
-			success = true;
+		if (withdrawPossible(withdrawAmount)) { // Decision point 1: if
+			balance -= withdrawAmount;
 			amountWithdrawn += withdrawAmount;
-		} else {
-			success = false;
+			return true;
 		}
-		return success;
+		return false;
 	}
 
 	public void setAccountNumber(int accNumber) {

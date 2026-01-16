@@ -5,7 +5,7 @@
 ``` bash
 …/BankApplication/jay-bank master ? ❯ java -jar ~/Downloads/ckjm_ext.jar target/classes/bankAccountApp/*.class
 
-bankAccountApp.BankAccount 21 1 0 3 44 46 2 2 18 0.6875 477 1.0000 1 0.0000 0.2937 0 0 21.3333
+bankAccountApp.BankAccount 21 1 0 2 44 46 0 2 18 0.6938 460 1.0000 0 0.0000 0.2937 0 0 20.5238
  ~ public void setWithdrawLimit(double withdrawLimit): 1
  ~ public void <init>(int accountNumber, double balance, double withdrawLimit, String dateCreated, String accountHolder): 1
  ~ public String convertToText(bankAccountApp.BankAccount tmp): 1
@@ -13,8 +13,8 @@ bankAccountApp.BankAccount 21 1 0 3 44 46 2 2 18 0.6875 477 1.0000 1 0.0000 0.29
  ~ public double getBalance(): 1
  ~ public int getAccountNumber(): 1
  ~ public void <init>(double newInitMoneyAmount, double newWithdrawlimit, String newDateCreated, bankAccountApp.Person initHolder): 1
- ~ private boolean isWithdrawalValid(double withdrawAmount): 5
  ~ public String getDateCreated(): 1
+ ~ private boolean withdrawPossible(double withdrawAmount): 4
  ~ public String toString(): 1
  ~ public void depositMoney(double depositAmount): 2
  ~ public double getInitMoneyAmount(): 1
@@ -73,7 +73,7 @@ bankAccountApp.Bank 14 1 0 4 44 0 2 3 12 0.8333 413 1.0000 0 0.0000 0.3286 0 0 2
 | Class | LOC | WMC | CBO | LCOM | 
 |-------|-----|-----|-----|------| 
 | Bank | 413 | 14 | 3 | 0 | 
-| BankAccount | 477 | 21 | 2 | 46 | 
+| BankAccount | 460 | 21 | 2 | 46 | 
 | Person | 325 | 23 | 0 | 79 | 
 
 ## Which class has the highest WMC?
